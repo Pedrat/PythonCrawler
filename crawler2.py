@@ -80,23 +80,23 @@ class HANDLER:
             cprint("Não foi encontrada vulnerabilidade",'green')
 
     def subfinder(self):
-        print("bom dia")
+        #print("bom dia")
         #if 1==1:
         try:
             prefixo=""
             url = input("URL do website:\n")
-            if "http" not in url:
-                if "https" not in url:
+            if "http" not in self.url:
+                if "https" not in self.url:
                     antes = input("HTTP ou HTTPS?\n")
                     if antes == "https":
                         prefixo = 'https://'
                     elif antes == "http":
                         prefixo = 'http://'
             sufixo = '/'
-            r = requests.get(prefixo + url + sufixo)
+            r = requests.get(prefixo + self.url + sufixo)
             data = r.text
             sopa = BeautifulSoup(data, "lxml")
-            nome=url.split(".")
+            nome=self.url.split(".")
             nomecompleto = (nome[1]+".txt")
             for x in sopa.find_all('a'):
                 print(x.get('href'))
